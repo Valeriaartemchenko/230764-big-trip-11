@@ -2,7 +2,7 @@
 const TRIP_ITEMS_COUNT = 3;
 
 const createTripInformationTemplate = () => {
-  return(
+  return (
     `<section class="trip-main__trip-info  trip-info">
       <div class="trip-info__main">
         <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
@@ -14,15 +14,15 @@ const createTripInformationTemplate = () => {
 };
 
 const createTripCostTemplate = () => {
-  return(
+  return (
     `<p class="trip-info__cost">
       Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
     </p>`
-  )
-}
+  );
+};
 
 const createMenuTemplate = () => {
-  return(
+  return (
     `<nav class="trip-controls__trip-tabs  trip-tabs">
       <a class="trip-tabs__btn" href="#">Table</a>
       <a class="trip-tabs__btn  trip-tabs__btn--active" href="#">Stats</a>
@@ -31,7 +31,7 @@ const createMenuTemplate = () => {
 };
 
 const createFiltersTemplate = () => {
-  return(
+  return (
     `<form class="trip-filters" action="#" method="get">
       <div class="trip-filters__filter">
         <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked>
@@ -54,7 +54,7 @@ const createFiltersTemplate = () => {
 };
 
 const createTripSortTemplate = () => {
-  return(
+  return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
       <span class="trip-sort__item  trip-sort__item--day">Day</span>
 
@@ -102,7 +102,7 @@ const createTripDaysList = () => {
 };
 
 const createEditFormTemplate = () => {
-  return(
+  return (
     `<li class="trip-events__item">
                   <form class="event  event--edit" action="#" method="post">
                     <header class="event__header">
@@ -280,7 +280,7 @@ const createEditFormTemplate = () => {
 };
 
 const createTripItemTemplate = () => {
-  return(
+  return (
     `<li class="trip-events__item">
                   <div class="event">
                     <div class="event__type">
@@ -318,16 +318,16 @@ const createTripItemTemplate = () => {
   );
 };
 
-const render = (container, template, place) => {
+const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
 const createPageHeader = () => {
   const mainTripElement = document.querySelector(`.trip-main`);
-  render(mainTripElement, createTripInformationTemplate(),`afterbegin`);
+  render(mainTripElement, createTripInformationTemplate(), `afterbegin`);
 
   const tripInfoElement = mainTripElement.querySelector(`.trip-info`);
-  render(tripInfoElement, createTripCostTemplate(), `beforeend`);
+  render(tripInfoElement, createTripCostTemplate());
 
   const tripControlsElement = mainTripElement.querySelector(`.trip-controls`);
   render(tripControlsElement.firstElementChild, createMenuTemplate(), `afterend`);
@@ -336,34 +336,16 @@ const createPageHeader = () => {
 
 const createPageMainBlock = () => {
   const tripEventsElement = document.querySelector(`.trip-events`);
-  render(tripEventsElement, createTripSortTemplate(), `beforeend`);
-  render(tripEventsElement,createTripDaysList(),`beforeend`);
+  render(tripEventsElement, createTripSortTemplate());
+  render(tripEventsElement, createTripDaysList());
 
   const tripEventsListElement = document.querySelector(`.trip-events__list`);
-  render(tripEventsListElement, createEditFormTemplate(), `beforeend`);
+  render(tripEventsListElement, createEditFormTemplate());
 
-  for (let i = 0; i < TRIP_ITEMS_COUNT; i++){
-    render(tripEventsListElement, createTripItemTemplate(), `beforeend`);
-  };
+  for (let i = 0; i < TRIP_ITEMS_COUNT; i++) {
+    render(tripEventsListElement, createTripItemTemplate());
+  }
 };
 
 createPageHeader();
 createPageMainBlock();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
